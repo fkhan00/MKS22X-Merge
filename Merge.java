@@ -2,43 +2,33 @@ import java.util.ArrayList;
 import java.util.Arrays;
 public class Merge{
   public static void mergesort(int[] data){
-    ArrayList<Integer> bat = new ArrayList<Integer>(data.length);
-    for(int i = 0; i < data.length; i++){
-      bat.add(data[i]);}
-    mergesort(bat, 0, data.length -1);
-    for(int i = 0; i < data.length; i++){
-      data[i] = bat.get(i);}}
+    mergesort(data, 0, data.length -1);}
 
-  private static void mergesort(ArrayList<Integer> data, int lo, int hi){
+  private static void mergesort(int[] data, int lo, int hi){
     if(hi > lo){
       mergesort(data, lo, (lo + hi) / 2);
       mergesort(data, (lo + hi) / 2 + 1, hi);
       merge(data, lo, hi);}}
 
-  private static void merge(ArrayList<Integer> data, int lo, int hi){
-    ArrayList<Integer> dummy = new ArrayList<Integer>();
-    ArrayList<Integer> dummy2 = new ArrayList<Integer>();
+  private static void merge(int[] data, int lo, int hi){
+    ArrayList<Integer> dummy = new ArrayList<Integer>((lo + hi) / 2 - lo + 1);
+    ArrayList<Integer> dummy2 = new ArrayList<Integer>(hi - (lo + hi) / 2 + 1);
     for(int i = lo; i <= (lo + hi) / 2; i++){
-      dummy.add(data.get(i));}
+      dummy.add(data[i]);}
     for(int i = (lo + hi) / 2 + 1; i <= hi; i++){
-      dummy2.add(data.get(i));}
-    int index = lo;
+      dummy2.add(data[i]);}
     int k = 0;
     int l = 0;
     while(k < dummy.size() && l < dummy2.size()){
       if(dummy.get(k) <= dummy2.get(l)){
-        data.set(index, dummy.get(k));
-        index ++;
+        data[k + l + lo] = dummy.get(k);
         k++;}
       else{
-        data.set(index,dummy2.get(l));
-        index ++;
+        data[k + l + lo] = dummy2.get(l);
         l++;}}
     while(k < dummy.size()){
-      data.set(index, dummy.get(k));
-      index ++;
+      data[k + l + lo] = dummy.get(k);
       k++;}
     while(l < dummy2.size()){
-      data.set(index, dummy2.get(l));
-      index ++;
+      data[k + l + lo] = dummy2.get(l);
       l++;}}}
