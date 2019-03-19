@@ -5,9 +5,9 @@ public class Merge{
     mergesort(data, 0, data.length -1);}
 
   private static void mergesort(int[] data, int lo, int hi){
-    if(hi - lo == 64){
+    if(hi - lo == 64 ){
       insertionSort(data, lo, hi);
-      return;}
+        return;}
     if(lo >= hi){
       return;}
     mergesort(data, lo, (lo + hi) / 2);
