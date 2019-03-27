@@ -20,9 +20,6 @@ public class Merge{
             ary[k ++] = tall[j++];}}
 
     public static void mergesort(int arr[], int lo, int hi){
-      if(hi - lo == 32){
-        insertionSort(arr, lo, hi);
-        return;}
         if (hi > lo){
             mergesort(arr, lo, (lo + hi) / 2);
             mergesort(arr , (lo + hi) / 2 +1, hi);
